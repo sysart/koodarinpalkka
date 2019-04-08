@@ -1,0 +1,10 @@
+@import "../constants";
+
+.HeroImage {
+  margin-top: $margin-xl;
+}
+
+.HeroDescription {
+  font-weight: 700;
+  margin: $margin-l auto $margin-xl;
+}

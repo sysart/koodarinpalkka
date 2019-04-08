@@ -1,0 +1,19 @@
+@import "../constants";
+
+.SliderContainer {
+  margin-bottom: $margin-m;
+}
+
+.BonusSubtitle {
+  font-size: 1.5rem;
+  margin-bottom: $margin-s;
+  font-weight: 400;
+  text-align: center;
+}
+
+.BonusWage {
+  font-size: 1.5rem;
+  margin-bottom: $margin-l;
+  font-weight: 700;
+  text-align: center
+}
