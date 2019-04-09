@@ -39,10 +39,10 @@ jobs:
           --cache-control "max-age=86400"
         overwrite: true
 
-  workflows:
-    version: 2
-    build-and-deploy:
-      jobs:
-        - build
-        - deploy:
-            - requires: -build
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          - requires: -build
