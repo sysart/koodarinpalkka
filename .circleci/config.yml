@@ -77,8 +77,8 @@ jobs:
       - run: ls -al
 
       - run:
-        name: Install aws cli
-        command: sudo apt-get -y -qq install awscli
+          name: Install aws cli
+          command: sudo apt-get -y -qq install awscli
       - run: aws s3 ls
 
 workflows:
