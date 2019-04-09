@@ -28,7 +28,7 @@ jobs:
   deploy:
     working_directory: ~/koodarinpalkka
     docker:
-      - image:
+      - image: circleci/python:2.7
 
     steps:
       - aws-s3/sync:
