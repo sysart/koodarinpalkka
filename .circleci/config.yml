@@ -3,6 +3,8 @@ defaults: &defaults
   docker:
     - image: circleci/node:8.11
 version: 2
+orbs:
+  aws-s3: circleci/aws-s3@1.0.4
 jobs:
   checkout_code:
     <<: *defaults
@@ -71,22 +73,29 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: sudo apt-get update && sudo apt-get install -y python-dev
-      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
-      - run: sudo python get-pip.py
-      - run: sudo pip install awscli --upgrade
-      - run: aws --version
-      - run: aws s3 ls
-      - run:
-          name: "Deploy to S3"
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws s3 sync build/ s3://${PRODUCTION_BUCKET} --delete
-              aws cloudfront create-invalidation --distribution-id "${PRODUCTION_DISTRIBUTION_ID}" --paths /index.html
-            elif [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              aws s3 sync build/ s3://${STAGING_BUCKET} --delete
-              aws cloudfront create-invalidation --distribution-id "${STAGING_DISTREBUTION_ID}" --paths /index.html
-            fi
+      - aws-s3/sync:
+        from: dist
+        to: "s3://koodarinpalkka.fi"
+        arguments: |
+          --acl public-read \
+          --cache-control "max-age=86400"
+        overwrite: true
+      # - run: sudo apt-get update && sudo apt-get install -y python-dev
+      # - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      # - run: sudo python get-pip.py
+      # - run: sudo pip install awscli --upgrade
+      # - run: aws --version
+      # - run: aws s3 ls
+      # - run:
+      #     name: "Deploy to S3"
+      #     command: |
+      #       if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      #         aws s3 sync build/ s3://${PRODUCTION_BUCKET} --delete
+      #         aws cloudfront create-invalidation --distribution-id "${PRODUCTION_DISTRIBUTION_ID}" --paths /index.html
+      #       elif [ "${CIRCLE_BRANCH}" == "develop" ]; then
+      #         aws s3 sync build/ s3://${STAGING_BUCKET} --delete
+      #         aws cloudfront create-invalidation --distribution-id "${STAGING_DISTREBUTION_ID}" --paths /index.html
+      #       fi
 workflows:
   version: 2
   build_and_test:
