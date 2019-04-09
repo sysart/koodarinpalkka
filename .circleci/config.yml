@@ -41,8 +41,8 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-        name: "List"
-        command: ls -la
+          name: "List"
+          command: ls -la
       - run:
           name: "Test"
           command: npm run test
