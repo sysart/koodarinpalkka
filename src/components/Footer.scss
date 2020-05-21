@@ -6,4 +6,16 @@
     height: 3rem;
     margin: $margin-m auto;
   }
+  .Policies {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    a {
+      padding: 0.5rem;
+      color: #333;
+      &:hover {
+        color: $color-orange;
+      }
+    }
+  }
 }

@@ -1,0 +1,39 @@
+@import "../constants";
+
+.CookieBanner {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #FFFFFFF0;
+  text-align: center;
+  padding: 2rem;
+  border-top: 2px solid $color-orange;
+  button {
+    padding: 0.5rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    border-radius: 2px;
+    background-color: $color-orange;
+    color: $color-white;
+    font-weight: 700;
+    &:hover {
+      border: 2px solid $color-orange;
+      color: $color-orange;
+      background-color: $color-white;
+    }
+  }
+  h1 {
+    font-size: 1.25rem;
+  }
+  .container {
+    border-bottom: none;
+  }
+  .PolicyLink {
+    color: #000;
+    text-decoration: underline;
+    &:hover {
+      color: $color-orange;
+    }
+  }
+}
