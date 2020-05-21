@@ -2,13 +2,15 @@
 
 .CookieBanner {
   position: fixed;
-  width: 100%;
+  margin: 1rem;
+  padding: 2rem;
+  width: calc(100% - 2rem);
+  box-shadow: 0 1px 10px #aaa;
   bottom: 0;
   z-index: 1000;
-  background-color: #FFFFFFF0;
+  background-color: #FFFFFFF8;
   text-align: center;
-  padding: 2rem;
-  border-top: 2px solid $color-orange;
+  border-radius: 3px;
   button {
     padding: 0.5rem;
     border: 2px solid transparent;
