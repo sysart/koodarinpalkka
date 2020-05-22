@@ -1,101 +1,52 @@
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:8.11
-version: 2
-orbs:
-  aws-s3: circleci/aws-s3@1.0.4
 jobs:
-  checkout_code:
-    <<: *defaults
-    steps:
-      - restore_cache:
-          keys:
-            - source-{{ .Branch }}-{{ .Revision }}
-            - source-{{ .Branch }}-
-            - source-
-
-      - checkout
-
-      - save_cache:
-          key: source-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - "~/repo"
-  install:
-    <<: *defaults
-    steps:
-      - restore_cache:
-          key: source-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: "Yarn install"
-          command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - "node_modules"
-  test:
-    <<: *defaults
-    steps:
-      - restore_cache:
-          key: source-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: "List"
-          command: ls -la
-      - run:
-          name: "Test"
-          command: npm run test
   build:
-    <<: *defaults
+    working_directory: ~/project
+
+    executor:
+      name: node/default
+      tag: "12.10"
     steps:
-      - restore_cache:
-          key: source-{{ .Branch }}-{{ .Revision }}
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: "Build app"
-          command: npm run build
+          command: yarn build
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/project
           paths:
-            - build
-            - package.json
+            - node_modules
+
   deploy:
-    <<: *defaults
-    environment:
-      - STAGING_BUCKET: YOUR_STAGING_BUCKET_NAME
-      - PRODUCTION_BUCKET: YOUR_PRODUCTION_BUCKET_NAME
-      - STAGING_DISTRIBUTION_ID: YOUR_STAGING_DISTRIBUTION_ID
-      - PRODUCTION_DISTRIBUTION_ID: YOUR_PRODUCTION_DISTRIBUTION_ID
+    working_directory: ~/project
+    docker:
+      - image: "cimg/python:3.6"
     steps:
       - attach_workspace:
-          at: ~/repo
-      - run: echo "Ready to deploy"
-      - run: ls -al
+          at: ~/project
+      - aws-s3/sync:
+          arguments: |
+            --dryrun \
+            --acl public-read \
+            --cache-control "max-age=86400"
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_DEFAULT_REGION
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          from: build
+          overwrite: true
+          to: "s3://${CLIENT_BUCKET}"
 
-      - run:
-          name: Install aws cli
-          command: sudo apt-get -y -qq install awscli
-      - run: aws s3 ls
+orbs:
+  aws-s3: circleci/aws-s3@1.0.15
+  node: circleci/node@2.1.1
+version: 2.1
 
 workflows:
-  version: 2
-  build_and_test:
+  build-and-deploy:
     jobs:
-      - checkout_code
-      - install:
-          requires:
-            - checkout_code
-      - test:
-          requires:
-            - install
-      - build:
-          requires:
-            - install
+      - build
       - deploy:
+          filters:
+            branches:
+              only: master
           requires:
-            - test
             - build
