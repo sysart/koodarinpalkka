@@ -16,6 +16,7 @@ jobs:
           root: ~/project
           paths:
             - node_modules
+            - build
 
   deploy:
     working_directory: ~/project
