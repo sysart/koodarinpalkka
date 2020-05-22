@@ -40,7 +40,8 @@ jobs:
           name: Invalidate CloudFront Cache
           command: >
             aws cloudfront create-invalidation --distribution-id ${CLIENT_DISTRIBUTION} --paths /*
-      - slack/status
+      - slack/status:
+        success_message: ":tada: Uusi versio on julkaistu -> $CLIENT_BUCKET"
 
 orbs:
   aws-s3: circleci/aws-s3@1.0.15
