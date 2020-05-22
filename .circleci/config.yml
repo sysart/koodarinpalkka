@@ -9,6 +9,7 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
+          cache-key: yarn.lock
       - run:
           command: yarn build
       - persist_to_workspace:
@@ -33,7 +34,7 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           from: build
           overwrite: true
-          to: "s3://${CLIENT_BUCKET}"
+          to: "s3://koodarinpalkka.fi"
 
 orbs:
   aws-s3: circleci/aws-s3@1.0.15
