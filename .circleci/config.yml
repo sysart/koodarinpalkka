@@ -24,6 +24,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
+      - run:
+          command: ls -alh
       - aws-s3/sync:
           arguments: |
             --dryrun \
@@ -32,7 +34,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          from: build
+          from: ./build
           overwrite: true
           to: "s3://koodarinpalkka.fi"
 
