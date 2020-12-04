@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import React from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -16,8 +16,6 @@ const marks = {
 const Bonus = (props) => {
   const {
     content,
-    baseWage,
-    bonusWage,
     sliderLocation,
     handleChoice,
   } = props;
@@ -33,7 +31,7 @@ const Bonus = (props) => {
             min={50}
             max={100}
             marks={marks}
-            onChange={value => (handleChoice('bonus', value[2]))}
+            onChange={value => (handleChoice('bonusPercentage', value[2]))}
             value={[0, 80, sliderLocation]}
             trackStyle={[{ backgroundColor: '#EA5A0A' }, { backgroundColor: '#EA5A0A' }]}
             activeDotStyle={{ borderColor: '#EA5A0A' }}
@@ -42,22 +40,6 @@ const Bonus = (props) => {
             tipFormatter={value => `${value}%`}
           />
         </div>
-        <Row>
-          <Col md={6}>
-            <h3 className="BonusSubtitle">Peruspalkka</h3>
-            <p className="BonusWage">
-              {baseWage}
-              €/kk
-            </p>
-          </Col>
-          <Col md={6}>
-            <h3 className="BonusSubtitle">Bonus</h3>
-            <p className="BonusWage">
-              {bonusWage}
-              €/kk
-            </p>
-          </Col>
-        </Row>
       </Container>
     </section>
   );

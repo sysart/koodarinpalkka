@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Result from "./components/Result";
 import CookieBanner from './components/CookieBanner'
 import Header from "./components/Header";
+import Profit from './components/Profit';
 import content from "./content";
 import TagManager from 'react-gtm-module'
 import { withCookies } from 'react-cookie';
@@ -59,10 +60,10 @@ class List extends Component {
       experience: 5,
       knowhow: "",
       city: "",
-      location: "",
-      bonus: 80,
+      bonusPercentage: 80,
       baseWage: "- - ",
       bonusWage: "- - ",
+      profit: 10,
       cookiesAccepted: cookies.get('cookiesAccepted')
     };
 
@@ -76,9 +77,9 @@ class List extends Component {
   }
 
   calculateBaseWage() {
-    const { role, experience, knowhow, city, location } = this.state;
+    const { role, experience, knowhow, city } = this.state;
 
-    if (role === "" || knowhow === "" || city === "" || location === "") {
+    if (role === "" || knowhow === "" || city === "" ) {
       return;
     }
 
@@ -118,43 +119,63 @@ class List extends Component {
   }
 
   calculateBonusWage() {
-    const { role, city, location, bonus } = this.state;
-
-    let bonusPercentage = 0.3;
-
-    if (location === "customer") {
-      bonusPercentage = 0.5;
-    }
-
-    let base = (bonus - 80) * 0.05 * 31.5 * bonusPercentage;
-
-    // role calculation
+    const { role, city, bonusPercentage, profit } = this.state;
+  
+    let hourlyWage;
+    let bonusWage;
+    
+    // Role calculation
     if (city === "helsinki") {
-      if (role === "future-pro") {
-        base *= 70;
-      } else if (role === "battering-ram") {
-        base *= 95;
-      } else if (role === "consultant") {
-        base *= 100;
-      } else if (role === "pro") {
-        base *= 85;
+      // Helsinki
+      switch (role) {
+        case "future-pro":
+          hourlyWage = 65
+          break;
+        case "pro":
+          hourlyWage = 87.5
+          break;
+        case "consultant":
+        case "battering-ram":
+          hourlyWage = 97.5
+          break;
+        default:
+          hourlyWage = 0
       }
     } else {
-      if (role === "future-pro") {
-        base *= 50;
-      } else if (role === "battering-ram") {
-        base *= 80;
-      } else if (role === "consultant") {
-        base *= 85;
-      } else if (role === "pro") {
-        base *= 75;
+      // Oulu
+      switch (role) {
+        case "future-pro":
+          hourlyWage = 50
+          break;
+        case "pro":
+          hourlyWage = 72.5
+          break;
+        case "consultant":
+        case "battering-ram":
+          hourlyWage = 85
+          break;
+        default:
+          hourlyWage = 0
       }
     }
-
-    base = Math.round(base);
+    
+    // Calculate bonus wage
+    if (profit <= 4) {
+      bonusWage = (bonusPercentage - 80) / 20 * 0.3 * 31.6 * hourlyWage
+    } else if (profit <= 10) {
+      bonusWage = (bonusPercentage - 80) / 20 * (0.4 + 2 * (profit - 5) / 100) * 31.6 * hourlyWage
+    } else if (profit <= 14) {
+      bonusWage = (bonusPercentage - 80) / 20 * 0.5 * 31.6 * hourlyWage
+    } else if (profit <= 19) {
+      bonusWage = (bonusPercentage - 80) / 20 * 0.5 * 39.5 * hourlyWage
+    } else if (profit <= 24) {
+      bonusWage = (bonusPercentage - 80) / 20 * 0.5 * 47.5 * hourlyWage
+    } else if (profit <= 25) {
+      bonusWage = (bonusPercentage - 80) / 20 * 0.5 * 55.3 * hourlyWage
+    }
 
     this.setState({
-      bonusWage: base
+      bonusWage: bonusWage
     });
   }
 
@@ -187,10 +208,11 @@ class List extends Component {
       experienceContent,
       knowhow,
       city,
-      location,
-      bonusContent
+      bonusContent,
+      profitContent
     ] = content;
-    const { experience, bonus, baseWage, bonusWage, cookiesAccepted } = this.state;
+    
+    const { experience, bonusPercentage, baseWage, bonusWage, profit, cookiesAccepted } = this.state;
     
     return (
       <>
@@ -208,12 +230,16 @@ class List extends Component {
           />
           <RadioComponent content={knowhow} handleChoice={this.handleChoice} />
           <RadioComponent content={city} handleChoice={this.handleChoice} />
-          <RadioComponent content={location} handleChoice={this.handleChoice} />
           <Bonus
             content={bonusContent}
+            sliderLocation={bonusPercentage}
+            handleChoice={this.handleChoice}
+          />
+          <Profit
+            content={profitContent}
             baseWage={baseWage}
             bonusWage={bonusWage}
-            sliderLocation={bonus}
+            sliderLocation={profit}
             handleChoice={this.handleChoice}
           />
           <Result baseWage={baseWage} bonusWage={bonusWage} />
