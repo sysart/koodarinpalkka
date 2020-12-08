@@ -4,7 +4,7 @@ jobs:
 
     executor:
       name: node/default
-      tag: "12.10"
+      tag: "15.3.0"
     steps:
       - checkout
       - node/install-packages:
