@@ -1,9 +1,9 @@
 {
   "name": "koodarinpalkka",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "engines": {
-    "node": "15.3.0"
+    "node": "^14.15.0"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
