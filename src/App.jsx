@@ -64,7 +64,7 @@ class List extends Component {
       baseWage: "- - ",
       bonusWage: "- - ",
       profit: 10,
-      cookiesAccepted: cookies.get('cookiesAccepted')
+      cookiesAccepted: true
     };
 
     if (this.state.cookiesAccepted) {
