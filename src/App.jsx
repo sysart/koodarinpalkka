@@ -5,16 +5,9 @@ import RadioComponent from "./components/RadioComponent";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import Result from "./components/Result";
-import CookieBanner from './components/CookieBanner'
 import Header from "./components/Header";
 import Profit from './components/Profit';
 import content from "./content";
-import TagManager from 'react-gtm-module'
-import { withCookies } from 'react-cookie';
-
-const tagManagerArgs = {
-  gtmId: 'GTM-5RB3TN3'
-}
 
 const proWageRatios = [
   { years: 5, ratio: 10, base: 3150 },
@@ -53,8 +46,6 @@ class List extends Component {
   constructor(props) {
     super(props);
     
-    const { cookies } = props;
-  
     this.state = {
       role: "",
       experience: 5,
@@ -64,16 +55,11 @@ class List extends Component {
       baseWage: "- - ",
       bonusWage: "- - ",
       profit: 10,
-      cookiesAccepted: true
     };
-
-    if (this.state.cookiesAccepted) {
-      TagManager.initialize(tagManagerArgs)
-    }
+    
     this.calculateBaseWage = this.calculateBaseWage.bind(this);
     this.calculateBonusWage = this.calculateBonusWage.bind(this);
     this.handleChoice = this.handleChoice.bind(this);
-    this.acceptCookies = this.acceptCookies.bind(this);
   }
 
   calculateBaseWage() {
@@ -187,20 +173,6 @@ class List extends Component {
       () => this.calculateBaseWage()
     );
   }
-  
-  acceptCookies() {
-    TagManager.initialize(tagManagerArgs)
-  
-    const { cookies } = this.props;
-  
-    cookies.set('cookiesAccepted', true, { path: '/', maxAge: 31556952 });
-  
-    this.setState(
-      {
-        cookiesAccepted: true
-      }
-    )
-  }
 
   render() {
     const [
@@ -212,7 +184,7 @@ class List extends Component {
       profitContent
     ] = content;
     
-    const { experience, bonusPercentage, baseWage, bonusWage, profit, cookiesAccepted } = this.state;
+    const { experience, bonusPercentage, baseWage, bonusWage, profit } = this.state;
     
     return (
       <>
@@ -221,7 +193,6 @@ class List extends Component {
           <Header />
         </header>
         <main>
-          <CookieBanner visible={!cookiesAccepted} acceptCookies={this.acceptCookies}/>
           <RadioComponent content={role} handleChoice={this.handleChoice} />
           <Experience
             content={experienceContent}
@@ -250,4 +221,4 @@ class List extends Component {
   }
 }
 
-export default withCookies(List);
+export default List;
