@@ -61,14 +61,6 @@ const content = [
       },
     ],
   },
-  {
-    title: 'Bonus ja kehittyminen',
-    description: 'Meillä kaikkien tavoitteena on käyttää keskimäärin 80 % työajasta asiakastyöhön eli hankkeisiin. Yli menevästä osasta voi itse päättää ja sitä voi hyödyntää esimerkiksi osaamisensa kehittämiseen. Jos kuitenkin tekee työtä yli 80 % tavoitteen, siitä hyvitetään lisäbonuksella. Kuinka suuren osan vapaasti päätettävästä työajasta haluaisit käyttää lisäansioiden tienaamiseen?',
-  },
-  {
-    title: 'Liikevoitto',
-    description: 'Bonuksen suuruuteen vaikuttaa omien laskutettavien tuntien lisäksi myös koko yrityksen kannattavuus. Bonus on joka tilanteessa vähintään 30% kaikista 80% tavoitteen yli menevistä laskutetuista tunneista. Yhteisenä tavoitteenamme on vähintään 10% liikevoitto, jolloin bonusprosentti on 50. Mikäli onnistumme yrityksenä vieläkin paremmin, bonukseen oikeuttavien tuntien alaraja voi laskea 75, 70 tai jopa 65 prosenttiin kaikista tunneista.',
-  },
 ];
 
 export default content;

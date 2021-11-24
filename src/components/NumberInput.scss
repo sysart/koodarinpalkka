@@ -1,0 +1,21 @@
+@import "../constants";
+
+.NumberInputContainer {
+  padding-bottom: $margin-l;
+}
+
+.NumberInput {
+  margin: 0 0.35rem 0 1rem;
+  text-align: right;
+  width: 3.5rem;
+  border: 2px $color-orange solid;
+  border-radius: 4px;
+}
+
+.NumberInputInfo {
+  font-size: 0.75rem;
+  margin-top: -0.5rem;
+  &.Warning {
+    color: $color-orange
+  }
+}

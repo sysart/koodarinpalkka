@@ -9,7 +9,7 @@ import React from 'react';
 import './RadioComponent.scss';
 
 const RadioComponent = (props) => {
-  const { content, handleChoice } = props;
+  const { content, handleChoice, selectedOption } = props;
 
   return (
     <section>
@@ -20,8 +20,20 @@ const RadioComponent = (props) => {
           {content.options.map(option => (
             <FormGroup check key={option.id}>
               <Label check className="rad">
-                <Input type="radio" name="radio" onClick={() => handleChoice(content.shortTitle, option.id)} />
+                <Input
+                  type="radio"
+                  name="radio"
+                  checked={typeof selectedOption !== 'undefined' && selectedOption === option.id}
+                  onChange={() => handleChoice(content.shortTitle, option.id)}
+                />
                 <i />
+                {
+                  typeof option.highlightedText !== 'undefined' &&
+                  <>
+                    <b>{option.highlightedText}</b>
+                    <br/>
+                  </>
+                }
                 {option.text}
               </Label>
             </FormGroup>

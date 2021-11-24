@@ -1,9 +1,12 @@
 @import "../constants";
 
+.ResultContainer {
+  margin: $margin-l auto;
+}
+
 .ResultTitle {
   font-size: 2rem;
   text-align: center;
-  margin-top: $margin-xl;
 }
 
 .Result {
@@ -13,22 +16,54 @@
   margin: $margin-m;
 }
 
+.ResultSmall {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  margin: $margin-m;
+}
+
+.Disclaimer {
+  font-size: 0.75rem;
+  max-width: 384px;
+  margin: auto;
+  text-align: center;
+}
+
+.CTA-Container {
+  margin: $margin-l auto;
+}
+
 .LinkButton {
   position: relative;
   display: inline-block;
   font-weight: 700;
   font-size: 1rem;
+  background-color: $color-white;
   color: $color-orange;
   padding: 0.5rem;
   border: 2px $color-orange solid;
-  border-radius: 2px;
+  border-radius: 4px;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: $margin-xl;
 
   &:hover {
-    background-color: #EA5A0A;
+    background-color: $color-orange;
     color: $color-white;
     text-decoration: none;
+  }
+}
+
+.HubSpotForm {
+  margin: $margin-l auto;
+}
+
+.ActionButton {
+  margin-bottom: $margin-s;
+  background-color: $color-orange;
+  color: $color-white;
+  &:hover {
+    color: $color-orange;
+    background-color: $color-white;
   }
 }

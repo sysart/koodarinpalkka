@@ -17,3 +17,24 @@
   font-weight: 700;
   text-align: center
 }
+
+.SpecialSlider {
+  .rc-slider-rail::after {
+    position: absolute;
+    content: "";
+    left: 14.2857%;
+    width: calc(57.1429% - 14.2857%);
+    background-color: #BBBBBB;
+    height: 4px;
+    border-radius: 6px;
+  }
+  .rc-slider-step {
+    .rc-slider-dot:nth-of-type(2),
+    .rc-slider-dot:nth-of-type(3),
+    .rc-slider-dot:nth-of-type(4),
+    .rc-slider-dot:nth-of-type(5)
+    {
+      border-color: #BBBBBB;
+    }
+  }
+}
