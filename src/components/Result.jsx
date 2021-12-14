@@ -24,7 +24,7 @@ const Result = (props) => {
     <section>
       <Container>
         <div className={"ResultContainer"}>
-          <p className="ResultTitle">Palkkasi meillä on</p>
+          <p className="ResultTitle">Bruttopalkkasi meillä on</p>
           { buttonData === "monthly" &&
             <p className="Result">
               { wage.toLocaleString("fi-FI") }
