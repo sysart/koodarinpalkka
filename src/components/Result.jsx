@@ -70,6 +70,9 @@ const Result = (props) => {
         <div className={"CTA-Container"}>
           <button onClick={() => {recalculate("wageType", buttonData); window.scroll(0, 460)}} className="LinkButton ActionButton">{buttonText}</button>
           <div>
+            <a href="https://sysart.fi/blog/2022/03/29/qa-sysartin-palkkamalli/" className="LinkButton">Palkkamallin Q&A</a>
+          </div>
+          <div>
             <a href="https://sysart.fi/ura-sysartilla/" className="LinkButton">Katso avoimet työpaikat</a>
           </div>
         </div>
