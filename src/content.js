@@ -5,19 +5,15 @@ const content = [
     description: 'Valitse parhaiten itseäsi kuvaava vaihtoehto:',
     options: [
       {
-        text: 'Olen kehityshaluinen ohjelmistokehittäjä, mutta tarvitsen vielä säännöllisesti muiden osaajien tukea.',
-        id: 'future-pro',
-      },
-      {
-        text: 'Kykenen tiimin jäsenenä itsenäiseen työskentelyyn ilman muiden opastusta.',
+        text: 'Kykenen tiimin jäsenenä itsenäiseen työskentelyyn ilman muiden opastusta. Minulla ei ole merkittäviä tiimin toimintaan vaikuttavia vastuita.',
         id: 'pro',
       },
       {
-        text: 'Toimin asiakasrajapinnassa ja autan asiakasta hyödyntämään teknologiaa liiketoiminnan edistämiseen. Vaihtoehtoisesti autan asiakasta kehittämään toimintatapojaan tai tiimiensä toimintakykyä.',
+        text: 'Vastaan tiimin tai tuotteen osalta arkkitehtuurista, suunnittelupäätöksistä tms. Vaihtoehtoisesti vastaan tiimin asiakaslupauksen täyttymisestä.',
         id: 'consultant',
       },
       {
-        text: 'Toimin koodaavana hankevetäjänä ja huolehdin asiakaslupauksen täyttymisestä sekä oman tiimin tehokkaasta työskentelystä.',
+        text: 'Vastaan usean tiimin tai tuotteen osalta arkkitehtuurista, suunnittelupäätöksistä tms. Vaihtoehtoisesti vastaan usean tiimin asiakaslupauksen täyttymisestä.',
         id: 'battering-ram',
       },
     ],
@@ -26,25 +22,6 @@ const content = [
     title: 'Työkokemus',
     shortTitle: 'experience',
     description: 'Mikä on työkokemuksesi alalta vuosina?',
-  },
-  {
-    title: 'Osaaminen',
-    shortTitle: 'knowhow',
-    description: 'Arvioi oma osaamiseesi (tekninen osaaminen, tiimin jäsenenä toimiminen, asiakastyytyväisyys jne.) suhteessa työkokemukseesi.',
-    options: [
-      {
-        text: 'Osaamiseni ei kaikilta osin ole kokemusvuosieni edellyttämällä tasolla.',
-        id: 'behind',
-      },
-      {
-        text: 'Osaamiseni on kokemukseni edellyttämällä tasolla.',
-        id: 'normal',
-      },
-      {
-        text: 'Osaamiseni suhteutettuna kokemukseeni on keskimääräistä parempi.',
-        id: 'ahead',
-      },
-    ],
   },
   {
     title: 'Toimipiste',

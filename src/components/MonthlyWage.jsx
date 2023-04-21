@@ -45,7 +45,6 @@ class List extends Component {
     this.state = {
       role: "",
       experience: 5,
-      knowhow: "",
       city: "",
       billingPercentage: 100,
       bonusPercentage: 5,
@@ -59,9 +58,9 @@ class List extends Component {
   }
   
   calculateBaseWage() {
-    const { role, experience, knowhow, city } = this.state;
+    const { role, experience, city } = this.state;
     
-    if (role === "" || knowhow === "" || city === "" ) {
+    if (role === "" || city === "" ) {
       return;
     }
     
@@ -76,15 +75,6 @@ class List extends Component {
       base = findWageBasedOnExperience(consultantWageRatios, experience);
     } else if (role === "pro") {
       base = findWageBasedOnExperience(proWageRatios, experience);
-    }
-    
-    // knowhow calculation
-    if (knowhow === "behind") {
-      base -= 300;
-    }
-    
-    if (knowhow === "ahead") {
-      base += 300;
     }
     
     // city bonus calculation
@@ -165,7 +155,6 @@ class List extends Component {
     const [
       role,
       experienceContent,
-      knowhow,
       city,
     ] = content;
     
@@ -177,7 +166,6 @@ class List extends Component {
             sliderLocation={this.state.experience}
             handleChoice={this.handleChoice}
           />
-          <RadioComponent content={knowhow} handleChoice={this.handleChoice} selectedOption={this.state.knowhow}/>
           <RadioComponent content={city} handleChoice={this.handleChoice} selectedOption={this.state.city}/>
           <Bonus
             handleChoice={this.handleChoice}
