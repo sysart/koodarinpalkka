@@ -1,15 +1,16 @@
 {
-  "name": "koodarinpalkka",
-  "version": "0.3.0",
+  "name": "koodarinpalkka-2",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.5.0",
-    "rc-slider": "^9.2.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "bootstrap": "^5.3.3",
+    "rc-slider": "^11.1.8",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-hubspot-form": "^1.3.7",
-    "react-scripts": "4.0.3",
-    "reactstrap": "^8.4.1"
+    "react-scripts": "5.0.1",
+    "reactstrap": "^9.2.3",
+    "sass": "^1.83.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,7 +19,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -31,8 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "sass": "^1.49.11"
   }
 }
