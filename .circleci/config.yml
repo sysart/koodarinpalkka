@@ -8,10 +8,10 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn
-          cache-key: yarn.lock
+          pkg-manager: npm
+          cache-key: package-lock.json
       - run:
-          command: yarn build
+          command: npm run build
       - persist_to_workspace:
           root: ~/project
           paths:
