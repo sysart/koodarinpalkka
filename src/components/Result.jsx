@@ -1,7 +1,6 @@
 import { Container } from 'reactstrap';
 import React from 'react';
 import './Result.scss';
-import HubspotForm from 'react-hubspot-form'
 
 const Result = (props) => {
   const { baseWage, bonusWage, recalculate, disclaimer, buttonData, buttonText } = props;
@@ -53,17 +52,6 @@ const Result = (props) => {
           {
             typeof disclaimer !== 'undefined' && <p className="Disclaimer">{disclaimer}</p>
           }
-        </div>
-      </Container>
-      <Container>
-        <div className={"HubSpotForm"}>
-          <HubspotForm
-            portalId='2685480'
-            formId='21d02dcf-b335-448d-a6f4-e97b1b8f5867'
-            onSubmit={() => console.log('Submit!')}
-            onReady={(form) => console.log('Form ready!')}
-            loading={<div>Loading...</div>}
-          />
         </div>
       </Container>
       <Container>
