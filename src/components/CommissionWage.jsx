@@ -74,7 +74,7 @@ class List extends Component {
           baseWage={baseWage}
           bonusWage={0}
           recalculate={recalculate}
-          disclaimer={"Vuosiloman ja muiden palkallisten vapaapäivien aikainen palkka sekä lomaraha määräytyvät viimeksi päättyneen lomakauden keskiansion mukaan. Myös sairauspoissaolon palkka määräytyy vastaavasti. Työntekijällä on halutessaan kerran vuodessa mahdollisuus vaihtaa kuukausipalkalle."}
+          disclaimer={"Kokonaisansiossa huomioitu arkipyhien vaikutus, joka on keskimäärin 4,5 tuntia kuukaudessa. Maksamme arkipyhistä keskipalkan mukaan. Arkipyhien lisäksi myös vuosilomilta, muilta palkallisilta vapaapäiviltä sekä palkallisilta sairaslomapäiviltä maksetaan viimeksi päättyneen lomakauden keskiansion mukaan. Myös lomaraha määräytyy vastaavan keskiansion mukaan."}
           buttonText={"Laske ansiosi kuukausipalkalla"}
           buttonData={"monthly"}
         />
