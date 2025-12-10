@@ -10,7 +10,7 @@ class List extends Component {
     this.state = {
       hourlyBilling: 95,
       billableHoursPerMonth: 158,
-      baseWage: 7505,
+      baseWage: 7743,
     };
     
     this.calculateBaseWage = this.calculateBaseWage.bind(this);
@@ -18,10 +18,19 @@ class List extends Component {
   }
   
   calculateBaseWage() {
-    const { hourlyBilling, billableHoursPerMonth } = this.state;
+    const hourlyBilling = parseInt(this.state.hourlyBilling, 10);
+    const billableHoursPerMonth = parseInt(this.state.billableHoursPerMonth, 10);
     
-    const base = (hourlyBilling * billableHoursPerMonth) / 2;
+    let base = 0;
     
+    if (billableHoursPerMonth <= 158) {
+      base = (hourlyBilling / 2) * (billableHoursPerMonth + 5) * billableHoursPerMonth / 158;
+    } else {
+      base = (hourlyBilling / 2) * (billableHoursPerMonth + 5);
+    }
+
+    console.log(base)
+
     this.setState(
       {
         baseWage: base < 3000 ? 3000 : base
@@ -74,7 +83,7 @@ class List extends Component {
           baseWage={baseWage}
           bonusWage={0}
           recalculate={recalculate}
-          disclaimer={"Kokonaisansiossa huomioitu arkipyhien vaikutus, joka on keskimäärin 4,5 tuntia kuukaudessa. Maksamme arkipyhistä keskipalkan mukaan. Arkipyhien lisäksi myös vuosilomilta, muilta palkallisilta vapaapäiviltä sekä palkallisilta sairaslomapäiviltä maksetaan viimeksi päättyneen lomakauden keskiansion mukaan. Myös lomaraha määräytyy vastaavan keskiansion mukaan."}
+          disclaimer={"Kokonaisansiossa huomioitu arkipyhien vaikutus, joka on keskimäärin 5 tuntia kuukaudessa. Maksamme arkipyhistä keskipalkan mukaan. Arkipyhien lisäksi myös vuosilomilta, muilta palkallisilta vapaapäiviltä sekä palkallisilta sairaslomapäiviltä maksetaan viimeksi päättyneen lomakauden keskiansion mukaan. Myös lomaraha määräytyy vastaavan keskiansion mukaan."}
           buttonText={"Laske ansiosi kuukausipalkalla"}
           buttonData={"monthly"}
         />
