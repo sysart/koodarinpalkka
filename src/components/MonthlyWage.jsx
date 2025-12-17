@@ -173,6 +173,7 @@ class List extends Component {
           <Result
             baseWage={this.state.baseWage}
             bonusWage={this.state.bonusWage}
+            baseYearlyWage={Math.round((this.state.baseWage + this.state.bonusWage) * 12.5)}
             recalculate={recalculate}
             buttonText={"Laske ansiosi provisiopalkalla"}
             buttonData={"commission"}

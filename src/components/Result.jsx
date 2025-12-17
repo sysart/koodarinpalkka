@@ -3,7 +3,7 @@ import React from 'react';
 import './Result.scss';
 
 const Result = (props) => {
-  const { baseWage, bonusWage, recalculate, disclaimer, buttonData, buttonText } = props;
+  const { baseWage, bonusWage, baseYearlyWage, recalculate, disclaimer, buttonData, buttonText } = props;
   
   let wage;
   let bonus;
@@ -16,7 +16,7 @@ const Result = (props) => {
   } else {
     wage = Math.round(baseWage)
     bonus = Math.round(bonusWage)
-    yearlyWage = Math.round((wage + bonus) * 12.5)
+    yearlyWage = Math.round(baseYearlyWage)
   }
   
   return (

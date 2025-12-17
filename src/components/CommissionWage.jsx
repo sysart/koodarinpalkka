@@ -82,8 +82,9 @@ class List extends Component {
         <Result
           baseWage={baseWage}
           bonusWage={0}
+          baseYearlyWage={baseWage * 12 + 25 * 7.5 * hourlyBilling / 2}
           recalculate={recalculate}
-          disclaimer={"Kokonaisansiossa huomioitu arkipyhien vaikutus, joka on keskimäärin 5 tuntia kuukaudessa. Maksamme arkipyhistä keskipalkan mukaan. Arkipyhien lisäksi myös vuosilomilta, muilta palkallisilta vapaapäiviltä sekä palkallisilta sairaslomapäiviltä maksetaan viimeksi päättyneen lomakauden keskiansion mukaan. Myös lomaraha määräytyy vastaavan keskiansion mukaan."}
+          disclaimer={"Kokonaisansiossa huomioitu arkipyhien vaikutus, joka on keskimäärin 5 tuntia kuukaudessa. Maksamme arkipyhistä keskipalkan mukaan. Arkipyhien lisäksi myös vuosilomilta, muilta palkallisilta vapaapäiviltä sekä palkallisilta sairaslomapäiviltä maksetaan viimeksi päättyneen lomakauden keskiansion mukaan."}
           buttonText={"Laske ansiosi kuukausipalkalla"}
           buttonData={"monthly"}
         />
